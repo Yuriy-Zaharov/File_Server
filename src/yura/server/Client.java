@@ -19,17 +19,6 @@ public class Client {
         return server;
     }
 
-    private void addFile(String[] commandWords) {
-        if (commandWords.length < 2) {
-            System.out.println("File's name wasn't inputted. add usage: add " + server.FILE_NAME + "1");
-            return;
-        } else if (! server.FILE_NAME.equals(commandWords[1].substring(0, server.FILE_NAME.length())) ) {
-            System.out.println("Cannot add the file " + commandWords[1]);
-            return;
-        }
-        server.addFile(commandWords[1]);
-    }
-
     public void handleCommand(String strCommand) {
         String[] commandWords = strCommand.split("\\s+");
 
@@ -37,17 +26,26 @@ public class Client {
             System.out.println("Inputted empty string!");
             return;
         }
+        if (commandWords.length < 2) {
+            if ("exit".equals(commandWords[0])) {
+                Main.appOn = false;
+            } else {
+                System.out.println("File's name wasn't inputted. add usage: add " + server.FILE_NAME + "1");
+            }
+            return;
+        }
 
         switch (commandWords[0]) {
-            case "add": {
-                addFile(commandWords);
-                break;
+            case "add" -> {
+                server.addFile(commandWords[1]);
             }
-            case "exit": {
-                Main.appOn = false;
-                break;
+            case "get" -> {
+                server.getFile(commandWords[1]);
             }
-            default: {
+            case "delete" -> {
+                server.deleteFile(commandWords[1]);
+            }
+            default -> {
                 System.out.println("Command wasn't found.");
             }
         }
