@@ -27,7 +27,6 @@ public class Main {
             String strInput = readCommand(scanInput);
             client.handleCommand(strInput);
 
-            //System.out.println(strInput);
         }
     }
 }
