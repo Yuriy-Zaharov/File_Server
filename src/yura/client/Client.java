@@ -1,4 +1,7 @@
-package yura.server;
+package yura.client;
+
+import yura.server.Main;
+import yura.server.Server;
 
 public class Client {
     private Server server;

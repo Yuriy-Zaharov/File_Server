@@ -1,5 +1,7 @@
 package yura.server;
 
+import java.io.File;
+
 public class Server {
     public final String FILE_NAME = "file";
     private int countFiles;
